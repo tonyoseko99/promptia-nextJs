@@ -13,7 +13,28 @@ function CreatePrompt() {
     tag: "",
   });
 
-  const createPrompt = (e) => {};
+  const createPrompt = (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      const response = fetch("/api/prompt/new", {
+        method: "POST",
+        body: JSON.stringify({
+          prompt: post.prompt,
+          userId: session?.user.id,
+          tag: post.tag,
+        }),
+      });
+      if (response.ok) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <Form
       type="Create"

@@ -19,7 +19,7 @@ function Form({ type, post, setPost, submitting, handleSubmit }) {
             Your AI Prompt
           </span>
           <textarea
-            value={post.prompt}
+            value={setPost}
             onChange={(e) => setPost({ ...post, prompt: e.target.value })}
             placeholder="Write your prompt here..."
             required
@@ -38,6 +38,19 @@ function Form({ type, post, setPost, submitting, handleSubmit }) {
             className="form_input"
           />
         </label>
+        <div className="flex-end mx-3 mb-5 gap-4">
+          <Link href="/" className="text-gray-500 text-sm">
+            Cancel
+          </Link>
+
+          <button
+            type="submit"
+            disabled={submitting}
+            className="px-5 text-sm py-1.5 bg-primary-orange rounded-full text-white"
+          >
+            {submitting ? `${type}...` : type}
+          </button>
+        </div>
       </form>
     </section>
   );
