@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const PromptSchema = new Schema({
   creator: {
@@ -14,3 +14,7 @@ const PromptSchema = new Schema({
     required: [true, "Please provide a tag"],
   },
 });
+
+const Prompt = models.Prompt || model("Pronpt", PromptSchema);
+
+export default Prompt;
